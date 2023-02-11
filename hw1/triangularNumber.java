@@ -1,3 +1,7 @@
+/**
+ * This module is for calculation triangular number by given index from console.
+ */
+
 package java_gb.hw1;
 
 import java.util.Scanner;
