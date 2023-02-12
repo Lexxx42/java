@@ -60,20 +60,19 @@ public class SQLquery {
             var item = jo.keySet().toArray()[i];
             String value = (String) jo.get(item);
             if (value.equals("null")) {
-                stringBuilder.append(item).append(' ').append("IS ").append(value.toUpperCase()).append(" AND ");
+                continue;
             } else {
-                stringBuilder.append(item).append('=').append('\'').append(value).append('\'').append(" AND ");
+                stringBuilder.append(item).append('=').append('\'').append(value).append('\'');
             }
         }
 
         var lastItem = jo.keySet().toArray()[jo.keySet().toArray().length - 1];
         String lastValue = (String) jo.get(lastItem);
 
-        if (lastValue.equals("null")) {
-            stringBuilder.append(lastItem).append(' ').append("IS ").append(lastValue.toUpperCase()).append(';');
-        } else {
-            stringBuilder.append(lastItem).append('=').append('\'').append(lastValue).append('\'').append(';');
+        if (!lastValue.equals("null")) {
+            stringBuilder.append(" AND ").append(lastItem).append('=').append('\'').append(lastValue).append('\'');
         }
+        stringBuilder.append(';');
         return stringBuilder.toString();
     }
 }
