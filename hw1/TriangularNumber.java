@@ -9,7 +9,7 @@ import java.util.Scanner;
 /**
  * Calculates triangular number by given index from console.
  */
-public class triangularNumber {
+public class TriangularNumber {
     public static void main(String[] args) {
         int n = getInputFromConsole();
         int triangularNumber = nthTriangularNumberCalculation(n);
