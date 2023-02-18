@@ -9,36 +9,46 @@ import java.util.logging.SimpleFormatter;
 
 public class MergeSort {
     public static void main(String[] args) {
-        int[] a1 = new int[]{1, 34, 3, 1, 90, 899, 23, 1};
-        int[] a2 = new int[]{9000, 123, 321, 222, 2, 0, 76, 76};
-        java_gb.hw3.MyLogger.writeLog(Arrays.toString(mergeSort(a1, a2)));
+        int[] a1 = new int[]{1, 34, 3, 1, 90, 899, 23, 9000, 123, 321, 222, 2, 0, 76, 76};
+        mergeSort(a1, a1.length);
+        java_gb.hw3.MyLogger.writeLog(Arrays.toString(a1));
     }
 
-    public static int[] mergeSort(int[] a1, int[] a2) {
-        int[] a3 = new int[a1.length + a2.length];
-        a1 = Arrays.stream(a1).sorted().toArray();
-        a2 = Arrays.stream(a2).sorted().toArray();
+    public static void mergeSort(int[] a, int n) {
+        if (n < 2)
+            return;
+        int mid = n / 2;
+        int[] l = new int[mid];
+        int[] r = new int[n - mid];
+
+        System.arraycopy(a, 0, l, 0, mid);
+        if (n - mid >= 0) System.arraycopy(a, mid, r, 0, n - mid);
+        mergeSort(l, mid);
+        mergeSort(r, n - mid);
+
+        merge(a, l, r, mid, n - mid);
+    }
+
+    public static void merge(int[] a, int[] l, int[] r, int left, int right) {
 
         int i = 0;
         int j = 0;
+        int k = 0;
 
-        for (int k = 0; k < a3.length; k++) {
+        while (i < left && j < right) {
 
-            if (i > a1.length - 1) {
-                int a = a2[j];
-                a3[k] = a;
-                j++;
-            } else if (j > a2.length - 1 || a1[i] < a2[j]) {
-                int a = a1[i];
-                a3[k] = a;
-                i++;
-            } else {
-                int b = a2[j];
-                a3[k] = b;
-                j++;
-            }
+            if (l[i] <= r[j])
+                a[k++] = l[i++];
+            else
+                a[k++] = r[j++];
+
         }
-        return a3;
+
+        while (i < left)
+            a[k++] = l[i++];
+
+        while (j < right)
+            a[k++] = r[j++];
     }
 }
 
