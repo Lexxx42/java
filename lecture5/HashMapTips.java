@@ -1,4 +1,4 @@
-package java_gb.seminar5;
+package java_gb.lecture5;
 
 public class HashMapTips {
     //put(K,V) – добавить пару если или изменить значение,если ключ имеется.

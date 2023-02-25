@@ -1,4 +1,4 @@
-package java_gb.seminar5;
+package java_gb.lecture5;
 
 public class TreeMapTips {
     //put(K,V)
